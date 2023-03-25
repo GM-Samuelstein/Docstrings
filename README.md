@@ -11,6 +11,8 @@ Welcome to your complete guide to documenting Python code. Whether you’re docu
 <li><a href="#04">Documenting Your Python Projects.</a></li>
 </ol>
 
+<p>Feel free to read through this tutorial from beginning to end or jump to a section you’re interested in. It was designed to work both ways.</p>
+
 <h2 id="01">Why Documenting Your Code Is So Important.</h2>
 <h6><a href="#content">Back to Contents.</h6>
 
