@@ -388,7 +388,7 @@ class SimpleClass:
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
-<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle mr-1"></i>Remove ads</a></div></section></section><section class="section3" id="docstring-formats"><h3>Docstring Formats<a class="headerlink" href="#docstring-formats" title="Permanent link"></a></h3>
+</section></section><section class="section3" id="docstring-formats"><h3>Docstring Formats<a class="headerlink" href="#docstring-formats" title="Permanent link"></a></h3>
 <p>You may have noticed that, throughout the examples given in this tutorial, there has been specific formatting with common elements: <code>Arguments</code>, <code>Returns</code>, and <code>Attributes</code>. There are specific docstrings formats that can be used to help docstring parsers and users have a familiar and known format. The formatting used within the examples in this tutorial are NumPy/SciPy-style docstrings. Some of the most common formats are the following:</p>
 <div class="table-responsive">
 <table class="table table-hover">
