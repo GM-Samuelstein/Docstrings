@@ -625,7 +625,7 @@ class SimpleClass:
 <li><strong>Click:</strong> <a href="http://click.pocoo.org/dev/">Docs</a> (<a href="https://github.com/pallets/click/tree/master/docs">Source</a>)</li>
 <li><strong>Pandas:</strong> <a href="http://pandas.pydata.org/pandas-docs/stable/">Docs</a> (<a href="https://github.com/pandas-dev/pandas/tree/master/doc">Source</a>)</li>
 </ul>
-<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle mr-1"></i>Remove ads</a></div></section></section><section class="section2" id="where-do-i-start"><h2>Where Do I Start?<a class="headerlink" href="#where-do-i-start" title="Permanent link"></a></h2>
+</section></section><section class="section2" id="where-do-i-start"><h2>Where Do I Start?<a class="headerlink" href="#where-do-i-start" title="Permanent link"></a></h2>
 <p>The documentation of projects have a simple progression:</p>
 <ol>
 <li>No Documentation</li>
