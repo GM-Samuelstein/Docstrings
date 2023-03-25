@@ -209,16 +209,9 @@ Welcome to your complete guide to documenting Python code. Whether you’re docu
 </ul>
 <section class="section4" id="class-docstrings"><h4>Class Docstrings<a class="headerlink" href="#class-docstrings" title="Permanent link"></a></h4>
 <p>Class Docstrings are created for the class itself, as well as any class methods. The docstrings are placed immediately following the class or class method indented by one level:</p>
+
 <pre><code>
 class SimpleClass:
-    &quot;&quot;&quot;Class docstrings go here.&quot;&quot;&quot;
-
-    def say_hello</span><span class="p">(self,name: str):
-        &quot;&quot;&quot;Class method docstrings go here.&quot;&quot;&quot;
-
-        print(<f&#39;Hello {name</span><span class="si">}&#39;)
-    
-    class SimpleClass:
     """Class docstrings go here."""
 
     def say_hello(self, name: str):
@@ -227,6 +220,7 @@ class SimpleClass:
         print(f'Hello {name}')
 
 </code></pre>
+
 <p>Class docstrings should contain the following information:</p>
 <ul>
 <li>A brief summary of its purpose and behavior</li>
