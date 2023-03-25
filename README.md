@@ -15,7 +15,10 @@ Welcome to your complete guide to documenting Python code. Whether you’re docu
 <h6><a href="#content">Back to Contents.</h6>
 
 <h2 id ="02">Commenting vs Documenting Code.</h2>
+<h6><a href="#content">Back to Contents.</h6>
 
 <h2 id ="03">Documenting Your Python Code Base Using Docstrings.</h2>
+<h6><a href="#content">Back to Contents.</h6>
 
 <h2 id ="04">Documenting Your Python Projects.</h2>
+<h6><a href="#content">Back to Contents.</h6>
