@@ -214,9 +214,9 @@ class SimpleClass:
     &quot;&quot;&quot;Class docstrings go here.&quot;&quot;&quot;
 
     def say_hello</span><span class="p">(self,name: str):
-        <span class="sd">&quot;&quot;&quot;Class method docstrings go here.&quot;&quot;&quot;</span>
+        &quot;&quot;&quot;Class method docstrings go here.&quot;&quot;&quot;
 
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        print(<f&#39;Hello {name</span><span class="si">}&#39;)
 </code></pre></div>
 <p>Class docstrings should contain the following information:</p>
 <ul>
