@@ -29,12 +29,19 @@ Welcome to your complete guide to documenting Python code. Whether you’re docu
 <p>&mdash; <em><a href="https://www.divio.com/en/blog/documentation/">Daniele Procida</a></em></p>
 </blockquote>
 <p>In this guide, you&rsquo;ll learn from the ground up how to properly document your Python code from the smallest of scripts to the largest of <a href="https://realpython.com/intermediate-python-project-ideas/">Python projects</a> to help prevent your users from ever feeling too frustrated to use or contribute to your project.</p>
+<h6><a href="#content">Back to Contents.</h6>
 
 <h2 id ="02">Commenting vs Documenting Code.</h2>
+<h6><a href="#content">Back to Contents.</h6>
+
 <h6><a href="#content">Back to Contents.</h6>
 
 <h2 id ="03">Documenting Your Python Code Base Using Docstrings.</h2>
 <h6><a href="#content">Back to Contents.</h6>
 
+<h6><a href="#content">Back to Contents.</h6>
+
 <h2 id ="04">Documenting Your Python Projects.</h2>
+<h6><a href="#content">Back to Contents.</h6>
+
 <h6><a href="#content">Back to Contents.</h6>
