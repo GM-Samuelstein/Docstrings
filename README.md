@@ -487,4 +487,153 @@ class SimpleClass:
 <h2 id ="04">Documenting Your Python Projects.</h2>
 <h6><a href="#content">Back to Contents.</h6>
 
+<p>Python projects come in all sorts of shapes, sizes, and purposes. The way you document your project should suit your specific situation. Keep in mind who the users of your project are going to be and adapt to their needs. Depending on the project type, certain aspects of documentation are recommended. The general <a href="https://realpython.com/python-application-layouts/">layout</a> of the project and its documentation should be as follows:</p>
+<div class="highlight"><pre><span></span><code>project_root/
+│
+├── project/  # Project source code
+├── docs/
+├── README
+├── HOW_TO_CONTRIBUTE
+├── CODE_OF_CONDUCT
+├── examples.py
+</code></pre></div>
+<p>Projects can be generally subdivided into three major types: Private, Shared, and Public/Open Source.</p>
+<section class="section3" id="private-projects"><h3>Private Projects<a class="headerlink" href="#private-projects" title="Permanent link"></a></h3>
+<p>Private projects are projects intended for personal use only and generally aren&rsquo;t shared with other users or developers. Documentation can be pretty light on these types of projects. There are some recommended parts to add as needed:</p>
+<ul>
+<li><strong>Readme:</strong> A brief summary of the project and its purpose. Include any special requirements for installation or operating the project.</li>
+<li><strong><code>examples.py</code>:</strong> A Python script file that gives simple examples of how to use the project.</li>
+</ul>
+<p>Remember, even though private projects are intended for you personally, you are also considered a user. Think about anything that may be confusing to you down the road and make sure to capture those in either comments, docstrings, or the readme.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle mr-1"></i>Remove ads</a></div></section><section class="section3" id="shared-projects"><h3>Shared Projects<a class="headerlink" href="#shared-projects" title="Permanent link"></a></h3>
+<p>Shared projects are projects in which you collaborate with a few other people in the development and/or use of the project. The &ldquo;customer&rdquo; or user of the project continues to be yourself and those limited few that use the project as well.</p>
+<p>Documentation should be a little more rigorous than it needs to be for a private project, mainly to help onboard new members to the project or alert contributors/users of new changes to the project. Some of the recommended parts to add to the project are the following:</p>
+<ul>
+<li><strong>Readme:</strong> A brief summary of the project and its purpose. Include any special requirements for installing or operating the project. Additionally, add any major changes since the previous version.</li>
+<li><strong><code>examples.py</code>:</strong> A Python script file that gives simple examples of how to use the projects.</li>
+<li><strong>How to Contribute:</strong> This should include how new contributors to the project can start contributing.</li>
+</ul>
+</section><section class="section3" id="public-and-open-source-projects"><h3>Public and Open Source Projects<a class="headerlink" href="#public-and-open-source-projects" title="Permanent link"></a></h3>
+<p>Public and Open Source projects are projects that are intended to be shared with a large group of users and can involve large development teams. These projects should place as high of a priority on project documentation as the actual development of the project itself. Some of the recommended parts to add to the project are the following:</p>
+<ul>
+<li>
+<p><strong>Readme:</strong> A brief summary of the project and its purpose. Include any special requirements for installing or operating the projects. Additionally, add any major changes since the previous version. Finally, add links to further documentation, bug reporting, and any other important information for the project. Dan Bader has put together <a href="https://dbader.org/blog/write-a-great-readme-for-your-github-project">a great tutorial</a> on what all should be included in your readme.</p>
+</li>
+<li>
+<p><strong>How to Contribute:</strong> This should include how new contributors to the project can help. This includes developing new features, fixing known issues, adding documentation, adding new tests, or reporting issues.</p>
+</li>
+<li>
+<p><strong>Code of Conduct:</strong> Defines how other contributors should treat each other when developing or using your software. This also states what will happen if this code is broken. If you&rsquo;re using Github, a Code of Conduct <a href="https://help.github.com/articles/adding-a-code-of-conduct-to-your-project/">template</a> can be generated with recommended wording. For Open Source projects especially, consider adding this.</p>
+</li>
+<li>
+<p><strong>License:</strong> A plaintext file that describes the license your project is using. For Open Source projects especially, consider adding this.</p>
+</li>
+<li>
+<p><strong>docs:</strong> A folder that contains further documentation. The next section describes more fully what should be included and how to organize the contents of this folder.</p>
+</li>
+</ul>
+<section class="section4" id="the-four-main-sections-of-the-docs-folder"><h4>The Four Main Sections of the <code>docs</code> Folder<a class="headerlink" href="#the-four-main-sections-of-the-docs-folder" title="Permanent link"></a></h4>
+<p>Daniele Procida gave a wonderful <a href="https://www.youtube.com/watch?v=azf6yzuJt54">PyCon 2017 talk</a> and subsequent <a href="https://www.divio.com/en/blog/documentation/">blog post</a> about documenting Python projects. He mentions that all projects should have the following four major sections to help you focus your work:</p>
+<ul>
+<li><strong>Tutorials</strong>: Lessons that take the reader by the hand through a series of steps to complete a project (or meaningful exercise). Geared towards the user&rsquo;s learning.</li>
+<li><strong>How-To Guides</strong>: Guides that take the reader through the steps required to solve a common problem (problem-oriented recipes).</li>
+<li><strong>References</strong>: Explanations that clarify and illuminate a particular topic. Geared towards understanding.</li>
+<li><strong>Explanations</strong>: Technical descriptions of the machinery and how to operate it (key classes, functions, APIs, and so forth). Think Encyclopedia article.</li>
+</ul>
+<p>The following table shows how all of these sections relates to each other as well as their overall purpose:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th class="text-right"></th>
+<th class="text-center">Most Useful When We&rsquo;re Studying</th>
+<th class="text-center">Most Useful When We&rsquo;re Coding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-right"><strong>Practical Step</strong></td>
+<td class="text-center"><em>Tutorials</em></td>
+<td class="text-center"><em>How-To Guides</em></td>
+</tr>
+<tr>
+<td class="text-right"><strong>Theoretical Knowledge</strong></td>
+<td class="text-center"><em>Explanation</em></td>
+<td class="text-center"><em>Reference</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the end, you want to make sure that your users have access to the answers to any questions they may have. By organizing your project in this manner, you&rsquo;ll be able to answer those questions easily and in a format they&rsquo;ll be able to navigate quickly.</p>
+</section></section><section class="section3" id="documentation-tools-and-resources"><h3>Documentation Tools and Resources<a class="headerlink" href="#documentation-tools-and-resources" title="Permanent link"></a></h3>
+<p>Documenting your code, especially large projects, can be daunting. Thankfully there are some tools out and references to get you started:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a></td>
+<td>A collection of tools to auto-generate documentation in multiple formats</td>
+</tr>
+<tr>
+<td><a href="http://epydoc.sourceforge.net/">Epydoc</a></td>
+<td>A tool for generating API documentation for Python modules based on their docstrings</td>
+</tr>
+<tr>
+<td><a href="https://readthedocs.org/">Read The Docs</a></td>
+<td>Automatic building, versioning, and hosting of your docs for you</td>
+</tr>
+<tr>
+<td><a href="https://www.doxygen.nl/manual/docblocks.html">Doxygen</a></td>
+<td>A tool for generating documentation that supports Python as well as multiple other languages</td>
+</tr>
+<tr>
+<td><a href="https://www.mkdocs.org/">MkDocs</a></td>
+<td>A static site generator to help build project documentation using the Markdown language. Check out <a href="https://realpython.com/python-project-documentation-with-mkdocs/">Build Your Python Project Documentation With MkDocs</a> to learn more.</td>
+</tr>
+<tr>
+<td><a href="https://pycco-docs.github.io/pycco/">pycco</a></td>
+<td>A &ldquo;quick and dirty&rdquo; documentation generator that displays code and documentation side by side. Check out <a href="https://realpython.com/generating-code-documentation-with-pycco/">our tutorial on how to use it for more info</a>.</td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/3/library/doctest.html"><code>doctest</code></a></td>
+<td>A standard-library module for running usage examples as automated tests. Check out <a href="https://realpython.com/python-doctest/">Python&rsquo;s doctest: Document and Test Your Code at Once</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Along with these tools, there are some additional tutorials, videos, and articles that can be useful when you are documenting your project:</p>
+<ol>
+<li><a href="https://www.youtube.com/watch?v=0ROZRNZkPS8">Carol Willing - Practical Sphinx - PyCon 2018</a></li>
+<li><a href="https://www.youtube.com/watch?v=bQSR1UpUdFQ">Daniele Procida - Documentation-driven development - Lessons from the Django Project - PyCon 2016</a></li>
+<li><a href="https://www.youtube.com/watch?v=hM4I58TA72g">Eric Holscher - Documenting your project with Sphinx &amp; Read the Docs - PyCon 2016</a></li>
+<li><a href="https://youtu.be/SUt3wT43AeM?t=6299">Titus Brown, Luiz Irber - Creating, building, testing, and documenting a Python project: a hands-on HOWTO - PyCon 2016</a></li>
+<li><a href="http://docutils.sourceforge.net/rst.html">reStructuredText Official Documentation</a></li>
+<li><a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">Sphinx&rsquo;s reStructuredText Primer</a></li>
+</ol>
+<p>Sometimes, the best way to learn is to mimic others. Here are some great examples of projects that use documentation well:</p>
+<ul>
+<li><strong>Django:</strong> <a href="https://docs.djangoproject.com/en/2.0/">Docs</a> (<a href="https://github.com/django/django/tree/master/docs">Source</a>)</li>
+<li><strong>Requests:</strong> <a href="https://requests.readthedocs.io/en/master/">Docs</a> (<a href="https://github.com/requests/requests/tree/master/docs">Source</a>)</li>
+<li><strong>Click:</strong> <a href="http://click.pocoo.org/dev/">Docs</a> (<a href="https://github.com/pallets/click/tree/master/docs">Source</a>)</li>
+<li><strong>Pandas:</strong> <a href="http://pandas.pydata.org/pandas-docs/stable/">Docs</a> (<a href="https://github.com/pandas-dev/pandas/tree/master/doc">Source</a>)</li>
+</ul>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle mr-1"></i>Remove ads</a></div></section></section><section class="section2" id="where-do-i-start"><h2>Where Do I Start?<a class="headerlink" href="#where-do-i-start" title="Permanent link"></a></h2>
+<p>The documentation of projects have a simple progression:</p>
+<ol>
+<li>No Documentation</li>
+<li>Some Documentation</li>
+<li>Complete Documentation</li>
+<li>Good Documentation</li>
+<li>Great Documentation</li>
+</ol>
+<p>If you&rsquo;re at a loss about where to go next with your documentation, look at where your project is now in relation to the progression above. Do you have any documentation? If not, then start there. If you have some documentation but are missing some of the key project files, get started by adding those.</p>
+<p>In the end, don&rsquo;t get discouraged or overwhelmed by the amount of work required for documenting code. Once you get started documenting your code, it becomes easier to keep going. Feel free to comment if you have questions or reach out to the Real Python Team on social media, and we&rsquo;ll help.</p>
+</section>
+
 <h6><a href="#content">Back to Contents.</h6>
