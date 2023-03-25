@@ -217,7 +217,16 @@ class SimpleClass:
         &quot;&quot;&quot;Class method docstrings go here.&quot;&quot;&quot;
 
         print(<f&#39;Hello {name</span><span class="si">}&#39;)
-</code></pre></div>
+    
+    class SimpleClass:
+    """Class docstrings go here."""
+
+    def say_hello(self, name: str):
+        """Class method docstrings go here."""
+
+        print(f'Hello {name}')
+
+</code></pre>
 <p>Class docstrings should contain the following information:</p>
 <ul>
 <li>A brief summary of its purpose and behavior</li>
