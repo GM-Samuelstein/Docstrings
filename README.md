@@ -192,15 +192,14 @@ Welcome to your complete guide to documenting Python code. Whether you’re docu
 <li>Another blank line</li>
 </ul>
     
-<div class="highlight python"><pre><span></span><code>
-<span class="sd">&quot;&quot;&quot;This is the summary line.</span>
+<div class="highlight python"><pre><span></span><code><span class="sd">&quot;&quot;&quot;This is the summary line.</span>
 <br />
 <span class="sd">This is the further elaboration of the docstring. Within this section,</span>
 <span class="sd">you can elaborate further on details as appropriate for the situation.</span>
 <span class="sd">Notice that the summary and the elaboration is separated by a blank new</span>
 <span class="sd">line.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
+<br />
 <span class="c1"># Notice the blank line above. Code should continue on this line.</span>
 </code></pre></div>
 <p>All docstrings should have the same max character length as comments (72 characters). Docstrings can be further broken up into three major categories:</p>
