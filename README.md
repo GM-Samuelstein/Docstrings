@@ -625,17 +625,6 @@ class SimpleClass:
 <li><strong>Click:</strong> <a href="http://click.pocoo.org/dev/">Docs</a> (<a href="https://github.com/pallets/click/tree/master/docs">Source</a>)</li>
 <li><strong>Pandas:</strong> <a href="http://pandas.pydata.org/pandas-docs/stable/">Docs</a> (<a href="https://github.com/pandas-dev/pandas/tree/master/doc">Source</a>)</li>
 </ul>
-</section></section><section class="section2" id="where-do-i-start"><h2>Where Do I Start?<a class="headerlink" href="#where-do-i-start" title="Permanent link"></a></h2>
-<p>The documentation of projects have a simple progression:</p>
-<ol>
-<li>No Documentation</li>
-<li>Some Documentation</li>
-<li>Complete Documentation</li>
-<li>Good Documentation</li>
-<li>Great Documentation</li>
-</ol>
-<p>If you&rsquo;re at a loss about where to go next with your documentation, look at where your project is now in relation to the progression above. Do you have any documentation? If not, then start there. If you have some documentation but are missing some of the key project files, get started by adding those.</p>
-<p>In the end, don&rsquo;t get discouraged or overwhelmed by the amount of work required for documenting code. Once you get started documenting your code, it becomes easier to keep going. Feel free to comment if you have questions or reach out to the Real Python Team on social media, and we&rsquo;ll help.</p>
-</section>
+</section></section>
 
 <h6><a href="#content">Back to Contents.</h6>
