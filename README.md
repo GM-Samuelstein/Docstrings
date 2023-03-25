@@ -297,10 +297,10 @@ class SimpleClass:
 <span class="sd">            parameter.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Silent Animals are not supported!&quot;</span><span class="p">)</span>
 
-        <span class="n">out_sound</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sound</span> <span class="k">if</span> <span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">sound</span>
+<span class="n">out_sound</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sound</span> <span class="k">if</span> <span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">sound</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">says_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">sound</span><span class="o">=</span><span class="n">out_sound</span><span class="p">))</span>
 </code></pre></div>
 </section><section class="section4" id="package-and-module-docstrings"><h4>Package and Module Docstrings<a class="headerlink" href="#package-and-module-docstrings" title="Permanent link"></a></h4>
