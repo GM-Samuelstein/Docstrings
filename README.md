@@ -108,6 +108,374 @@ Welcome to your complete guide to documenting Python code. Whether you’re docu
 <h2 id ="03">Documenting Your Python Code Base Using Docstrings.</h2>
 <h6><a href="#content">Back to Contents.</h6>
 
+<p>Now that we&rsquo;ve learned about commenting, let&rsquo;s take a deep dive into documenting a Python code base. In this section, you&rsquo;ll learn about docstrings and how to use them for documentation. This section is further divided into the following sub-sections:</p>
+<ol>
+<li><strong><a href="#docstrings-background">Docstrings Background</a>:</strong> A background on how docstrings work internally within Python</li>
+<li><strong><a href="#docstring-types">Docstring Types</a>:</strong> The various docstring &ldquo;types&rdquo; (function, class, class method, <a href="https://realpython.com/python-modules-packages/">module, package</a>, and script)</li>
+<li><strong><a href="#docstring-formats">Docstring Formats</a>:</strong> The different docstring &ldquo;formats&rdquo; (Google, NumPy/SciPy, reStructuredText, and Epytext)</li>
+</ol>
+<section class="section3" id="docstrings-background"><h3>Docstrings Background<a class="headerlink" href="#docstrings-background" title="Permanent link"></a></h3>
+<p>Documenting your Python code is all centered on docstrings. These are built-in strings that, when configured correctly, can help your users and yourself with your project&rsquo;s documentation. Along with docstrings, Python also has the built-in function <code>help()</code> that prints out the objects docstring to the console. Here&rsquo;s a quick example:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="go">Help on class str in module builtins:</span>
+
+<span class="go">class str(object)</span>
+<span class="go"> |  str(object=&#39;&#39;) -&gt; str</span>
+<span class="go"> |  str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</span>
+<span class="go"> |</span>
+<span class="go"> |  Create a new string object from the given object. If encoding or</span>
+<span class="go"> |  errors are specified, then the object must expose a data buffer</span>
+<span class="go"> |  that will be decoded using the given encoding and error handler.</span>
+<span class="go"> |  Otherwise, returns the result of object.__str__() (if defined)</span>
+<span class="go"> |  or repr(object).</span>
+<span class="go"> |  encoding defaults to sys.getdefaultencoding().</span>
+<span class="go"> |  errors defaults to &#39;strict&#39;.</span>
+<span class="go"> # Truncated for readability</span>
+</code></pre></div>
+<p>How is this output generated?  Since everything in Python is an object, you can examine the directory of the object using the <code>dir()</code> command. Let&rsquo;s do that and see what find:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="go">[&#39;__add__&#39;, ..., &#39;__doc__&#39;, ..., &#39;zfill&#39;] # Truncated for readability</span>
+</code></pre></div>
+<p>Within that directory output, there&rsquo;s an interesting property, <code>__doc__</code>. If you examine that property, you&rsquo;ll discover this:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="go">str(object=&#39;&#39;) -&gt; str</span>
+<span class="go">str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</span>
+
+<span class="go">Create a new string object from the given object. If encoding or</span>
+<span class="go">errors are specified, then the object must expose a data buffer</span>
+<span class="go">that will be decoded using the given encoding and error handler.</span>
+<span class="go">Otherwise, returns the result of object.__str__() (if defined)</span>
+<span class="go">or repr(object).</span>
+<span class="go">encoding defaults to sys.getdefaultencoding().</span>
+<span class="go">errors defaults to &#39;strict&#39;.</span>
+</code></pre></div>
+<p>Voilà! You&rsquo;ve found where docstrings are stored within the object. This means that you can directly manipulate that property. However, there are restrictions for builtins:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m a little string doc! Short and stout; here is my input and print me for my out&quot;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">can&#39;t set attributes of built-in/extension type &#39;str&#39;</span>
+</code></pre></div>
+<p>Any other custom object can be manipulated:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, is it me you&#39;re looking for?&quot;</span><span class="p">)</span>
+
+<span class="n">say_hello</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;A simple function that says hello... Richie style&quot;</span>
+</code></pre></div>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">say_hello</span><span class="p">)</span>
+<span class="go">Help on function say_hello in module __main__:</span>
+
+<span class="go">say_hello(name)</span>
+<span class="go">    A simple function that says hello... Richie style</span>
+</code></pre></div>
+<p>Python has one more feature that simplifies docstring creation. Instead of directly manipulating the <code>__doc__</code> property, the strategic placement of the string literal directly below the object will automatically set the <code>__doc__</code> value. Here&rsquo;s what happens with the same example as above:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A simple function that says hello... Richie style&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, is it me you&#39;re looking for?&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">say_hello</span><span class="p">)</span>
+<span class="go">Help on function say_hello in module __main__:</span>
+
+<span class="go">say_hello(name)</span>
+<span class="go">    A simple function that says hello... Richie style</span>
+</code></pre></div>
+<p>There you go! Now you understand the background of docstrings. Now it&rsquo;s time to learn about the different types of docstrings and what information they should contain.</p>
+</section><section class="section3" id="docstring-types"><h3>Docstring Types<a class="headerlink" href="#docstring-types" title="Permanent link"></a></h3>
+<p>Docstring conventions are described within <a href="https://www.python.org/dev/peps/pep-0257/">PEP 257</a>. Their purpose is to provide your users with a brief overview of the object. They should be kept concise enough to be easy to maintain but still be elaborate enough for new users to understand their purpose and how to use the documented object.</p>
+<p>In all cases, the docstrings should use the triple-double quote (<code>"""</code>) string format. This should be done whether the docstring is multi-lined or not. At a bare minimum, a docstring should be a quick summary of whatever is it you&rsquo;re describing and should be contained within a single line:</p>
+<div class="highlight python"><pre><span></span><code><span class="sd">&quot;&quot;&quot;This is a quick summary line used as a description of the object.&quot;&quot;&quot;</span>
+</code></pre></div>
+<p>Multi-lined docstrings are used to further elaborate on the object beyond the summary. All multi-lined docstrings have the following parts:</p>
+<ul>
+<li>A one-line summary line</li>
+<li>A blank line proceeding the summary</li>
+<li>Any further elaboration for the docstring</li>
+<li>Another blank line</li>
+</ul>
+<div class="highlight python"><pre><span></span><code><span class="sd">&quot;&quot;&quot;This is the summary line</span>
+
+<span class="sd">This is the further elaboration of the docstring. Within this section,</span>
+<span class="sd">you can elaborate further on details as appropriate for the situation.</span>
+<span class="sd">Notice that the summary and the elaboration is separated by a blank new</span>
+<span class="sd">line.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Notice the blank line above. Code should continue on this line.</span>
+</code></pre></div>
+<p>All docstrings should have the same max character length as comments (72 characters). Docstrings can be further broken up into three major categories:</p>
+<ul>
+<li><strong>Class Docstrings:</strong> Class and class methods</li>
+<li><strong>Package and Module Docstrings:</strong> Package, modules, and functions</li>
+<li><strong>Script Docstrings:</strong> Script and functions</li>
+</ul>
+<section class="section4" id="class-docstrings"><h4>Class Docstrings<a class="headerlink" href="#class-docstrings" title="Permanent link"></a></h4>
+<p>Class Docstrings are created for the class itself, as well as any class methods. The docstrings are placed immediately following the class or class method indented by one level:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">SimpleClass</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Class docstrings go here.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Class method docstrings go here.&quot;&quot;&quot;</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Class docstrings should contain the following information:</p>
+<ul>
+<li>A brief summary of its purpose and behavior</li>
+<li>Any public methods, along with a brief description</li>
+<li>Any class properties (attributes)</li>
+<li>Anything related to the <a href="https://realpython.com/python-interface/">interface</a> for subclassers, if the class is intended to be subclassed </li>
+</ul>
+<p>The <a href="https://realpython.com/python-class-constructor/">class constructor</a> parameters should be documented within the <code>__init__</code> class method docstring. Individual methods should be documented using their individual docstrings. Class method docstrings should contain the following:</p>
+<ul>
+<li>A brief description of what the method is and what it&rsquo;s used for</li>
+<li>Any arguments (both required and optional) that are passed including keyword arguments</li>
+<li>Label any arguments that are considered optional or have a default value</li>
+<li>Any side effects that occur when executing the method</li>
+<li>Any exceptions that are raised</li>
+<li>Any restrictions on when the method can be called</li>
+</ul>
+<p>Let&rsquo;s take a simple example of a data class that represents an Animal. This class will contain a few class properties, instance properties, a <code>__init__</code>, and a single <a href="https://realpython.com/instance-class-and-static-methods-demystified/">instance method</a>:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class used to represent an Animal</span>
+
+<span class="sd">    ...</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    says_str : str</span>
+<span class="sd">        a formatted string to print out what the animal says</span>
+<span class="sd">    name : str</span>
+<span class="sd">        the name of the animal</span>
+<span class="sd">    sound : str</span>
+<span class="sd">        the sound that the animal makes</span>
+<span class="sd">    num_legs : int</span>
+<span class="sd">        the number of legs the animal has (default 4)</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    says(sound=None)</span>
+<span class="sd">        Prints the animals name and what sound it makes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">says_str</span> <span class="o">=</span> <span class="s2">&quot;A </span><span class="si">{name}</span><span class="s2"> says </span><span class="si">{sound}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">sound</span><span class="p">,</span> <span class="n">num_legs</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name of the animal</span>
+<span class="sd">        sound : str</span>
+<span class="sd">            The sound the animal makes</span>
+<span class="sd">        num_legs : int, optional</span>
+<span class="sd">            The number of legs the animal (default is 4)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sound</span> <span class="o">=</span> <span class="n">sound</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_legs</span> <span class="o">=</span> <span class="n">num_legs</span>
+
+    <span class="k">def</span> <span class="nf">says</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sound</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prints what the animals name is and what sound it makes.</span>
+
+<span class="sd">        If the argument `sound` isn&#39;t passed in, the default Animal</span>
+<span class="sd">        sound is used.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sound : str, optional</span>
+<span class="sd">            The sound the animal makes (default is None)</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NotImplementedError</span>
+<span class="sd">            If no sound is set for the animal or passed in as a</span>
+<span class="sd">            parameter.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Silent Animals are not supported!&quot;</span><span class="p">)</span>
+
+        <span class="n">out_sound</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sound</span> <span class="k">if</span> <span class="n">sound</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">sound</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">says_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">sound</span><span class="o">=</span><span class="n">out_sound</span><span class="p">))</span>
+</code></pre></div>
+</section><section class="section4" id="package-and-module-docstrings"><h4>Package and Module Docstrings<a class="headerlink" href="#package-and-module-docstrings" title="Permanent link"></a></h4>
+<p>Package docstrings should be placed at the top of the package&rsquo;s <code>__init__.py</code> file. This docstring should list the modules and sub-packages that are exported by the package.</p>
+<p>Module docstrings are similar to class docstrings. Instead of classes and class methods being documented, it&rsquo;s now the module and any functions found within. Module docstrings are placed at the top of the file even before any imports. Module docstrings should include the following:</p>
+<ul>
+<li>A brief description of the module and its purpose</li>
+<li>A list of any classes, exception, functions, and any other objects exported by the module</li>
+</ul>
+<p>The docstring for a module function should include the same items as a class method:</p>
+<ul>
+<li>A brief description of what the function is and what it&rsquo;s used for</li>
+<li>Any arguments (both required and optional) that are passed including keyword arguments</li>
+<li>Label any arguments that are considered optional</li>
+<li>Any side effects that occur when executing the function</li>
+<li>Any exceptions that are raised</li>
+<li>Any restrictions on when the function can be called</li>
+</ul>
+</section><section class="section4" id="script-docstrings"><h4>Script Docstrings<a class="headerlink" href="#script-docstrings" title="Permanent link"></a></h4>
+<p>Scripts are considered to be single file executables run from the console. Docstrings for scripts are placed at the top of the file and should be documented well enough for users to be able to have a sufficient understanding of how to use the script. It should be usable for its &ldquo;usage&rdquo; message, when the user incorrectly passes in a parameter or uses the <code>-h</code> option.</p>
+<p>If you use <a href="https://realpython.com/command-line-interfaces-python-argparse/"><code>argparse</code></a>, then you can omit parameter-specific documentation, assuming it&rsquo;s correctly been documented within the <code>help</code> parameter of the <code>argparser.parser.add_argument</code> function. It is recommended to use the <code>__doc__</code> for the <code>description</code> parameter within <code>argparse.ArgumentParser</code>&rsquo;s constructor. Check out our tutorial on <a href="https://realpython.com/comparing-python-command-line-parsing-libraries-argparse-docopt-click/">Command-Line Parsing Libraries</a> for more details on how to use <code>argparse</code> and other common command line parsers.</p>
+<p>Finally, any custom or third-party imports should be listed within the docstrings to allow users to know which packages may be required for running the script. Here&rsquo;s an example of a script that is used to simply print out the column headers of a spreadsheet:</p>
+<div class="highlight python"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Spreadsheet Column Printer</span>
+
+<span class="sd">This script allows the user to print to the console all columns in the</span>
+<span class="sd">spreadsheet. It is assumed that the first row of the spreadsheet is the</span>
+<span class="sd">location of the columns.</span>
+
+<span class="sd">This tool accepts comma separated value files (.csv) as well as excel</span>
+<span class="sd">(.xls, .xlsx) files.</span>
+
+<span class="sd">This script requires that `pandas` be installed within the Python</span>
+<span class="sd">environment you are running this script in.</span>
+
+<span class="sd">This file can also be imported as a module and contains the following</span>
+<span class="sd">functions:</span>
+
+<span class="sd">    * get_spreadsheet_cols - returns the column headers of the file</span>
+<span class="sd">    * main - the main function of the script</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="k">def</span> <span class="nf">get_spreadsheet_cols</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="n">print_cols</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Gets and prints the spreadsheet&#39;s header columns</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_loc : str</span>
+<span class="sd">        The file location of the spreadsheet</span>
+<span class="sd">    print_cols : bool, optional</span>
+<span class="sd">        A flag used to print the columns to the console (default is</span>
+<span class="sd">        False)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        a list of strings used that are the header columns</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">file_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_loc</span><span class="p">)</span>
+    <span class="n">col_headers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">file_data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">print_cols</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">col_headers</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">col_headers</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;input_file&#39;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The spreadsheet file to pring the columns of&quot;</span>
+    <span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">get_spreadsheet_cols</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input_file</span><span class="p">,</span> <span class="n">print_cols</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle mr-1"></i>Remove ads</a></div></section></section><section class="section3" id="docstring-formats"><h3>Docstring Formats<a class="headerlink" href="#docstring-formats" title="Permanent link"></a></h3>
+<p>You may have noticed that, throughout the examples given in this tutorial, there has been specific formatting with common elements: <code>Arguments</code>, <code>Returns</code>, and <code>Attributes</code>. There are specific docstrings formats that can be used to help docstring parsers and users have a familiar and known format. The formatting used within the examples in this tutorial are NumPy/SciPy-style docstrings. Some of the most common formats are the following:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Formatting Type</th>
+<th>Description</th>
+<th class="text-center">Supported by Sphynx</th>
+<th class="text-center">Formal Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings">Google docstrings</a></td>
+<td>Google&rsquo;s recommended form of documentation</td>
+<td class="text-center">Yes</td>
+<td class="text-center">No</td>
+</tr>
+<tr>
+<td><a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a></td>
+<td>Official Python documentation standard; Not beginner friendly but feature rich</td>
+<td class="text-center">Yes</td>
+<td class="text-center">Yes</td>
+</tr>
+<tr>
+<td><a href="https://numpydoc.readthedocs.io/en/latest/format.html">NumPy/SciPy docstrings</a></td>
+<td>NumPy&rsquo;s combination of reStructuredText and Google Docstrings</td>
+<td class="text-center">Yes</td>
+<td class="text-center">Yes</td>
+</tr>
+<tr>
+<td><a href="http://epydoc.sourceforge.net/epytext.html">Epytext</a></td>
+<td>A Python adaptation of Epydoc; Great for Java developers</td>
+<td class="text-center">Not officially</td>
+<td class="text-center">Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The selection of the docstring format is up to you, but you should stick with the same format throughout your document/project. The following are examples of each type to give you an idea of how each documentation format looks.</p>
+<section class="section4" id="google-docstrings-example"><h4>Google Docstrings Example<a class="headerlink" href="#google-docstrings-example" title="Permanent link"></a></h4>
+<div class="highlight python"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Gets and prints the spreadsheet&#39;s header columns</span>
+
+<span class="sd">Args:</span>
+<span class="sd">    file_loc (str): The file location of the spreadsheet</span>
+<span class="sd">    print_cols (bool): A flag used to print the columns to the console</span>
+<span class="sd">        (default is False)</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">    list: a list of strings representing the header columns</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
+</section><section class="section4" id="restructuredtext-example"><h4>reStructuredText Example<a class="headerlink" href="#restructuredtext-example" title="Permanent link"></a></h4>
+<div class="highlight python"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Gets and prints the spreadsheet&#39;s header columns</span>
+
+<span class="sd">:param file_loc: The file location of the spreadsheet</span>
+<span class="sd">:type file_loc: str</span>
+<span class="sd">:param print_cols: A flag used to print the columns to the console</span>
+<span class="sd">    (default is False)</span>
+<span class="sd">:type print_cols: bool</span>
+<span class="sd">:returns: a list of strings representing the header columns</span>
+<span class="sd">:rtype: list</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
+</section><section class="section4" id="numpyscipy-docstrings-example"><h4>NumPy/SciPy Docstrings Example<a class="headerlink" href="#numpyscipy-docstrings-example" title="Permanent link"></a></h4>
+<div class="highlight python"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Gets and prints the spreadsheet&#39;s header columns</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">file_loc : str</span>
+<span class="sd">    The file location of the spreadsheet</span>
+<span class="sd">print_cols : bool, optional</span>
+<span class="sd">    A flag used to print the columns to the console (default is False)</span>
+
+<span class="sd">Returns</span>
+<span class="sd">-------</span>
+<span class="sd">list</span>
+<span class="sd">    a list of strings representing the header columns</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
+</section><section class="section4" id="epytext-example"><h4>Epytext Example<a class="headerlink" href="#epytext-example" title="Permanent link"></a></h4>
+<div class="highlight python"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Gets and prints the spreadsheet&#39;s header columns</span>
+
+<span class="sd">@type file_loc: str</span>
+<span class="sd">@param file_loc: The file location of the spreadsheet</span>
+<span class="sd">@type print_cols: bool</span>
+<span class="sd">@param print_cols: A flag used to print the columns to the console</span>
+<span class="sd">    (default is False)</span>
+<span class="sd">@rtype: list</span>
+<span class="sd">@returns: a list of strings representing the header columns</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <h6><a href="#content">Back to Contents.</h6>
 
 <h2 id ="04">Documenting Your Python Projects.</h2>
