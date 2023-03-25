@@ -505,7 +505,9 @@ class SimpleClass:
 <li><strong><code>examples.py</code>:</strong> A Python script file that gives simple examples of how to use the project.</li>
 </ul>
 <p>Remember, even though private projects are intended for you personally, you are also considered a user. Think about anything that may be confusing to you down the road and make sure to capture those in either comments, docstrings, or the readme.</p>
-<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle mr-1"></i>Remove ads</a></div></section><section class="section3" id="shared-projects"><h3>Shared Projects<a class="headerlink" href="#shared-projects" title="Permanent link"></a></h3>
+</section>
+
+<section class="section3" id="shared-projects"><h3>Shared Projects<a class="headerlink" href="#shared-projects" title="Permanent link"></a></h3>
 <p>Shared projects are projects in which you collaborate with a few other people in the development and/or use of the project. The &ldquo;customer&rdquo; or user of the project continues to be yourself and those limited few that use the project as well.</p>
 <p>Documentation should be a little more rigorous than it needs to be for a private project, mainly to help onboard new members to the project or alert contributors/users of new changes to the project. Some of the recommended parts to add to the project are the following:</p>
 <ul>
