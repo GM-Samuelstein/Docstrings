@@ -364,13 +364,13 @@ class SimpleClass:
 <span class="sd">        a list of strings used that are the header columns</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">file_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_loc</span><span class="p">)</span>
+<span class="n">file_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_loc</span><span class="p">)</span>
     <span class="n">col_headers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">file_data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">print_cols</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">print_cols</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">col_headers</span><span class="p">))</span>
 
-    <span class="k">return</span> <span class="n">col_headers</span>
+<span class="k">return</span> <span class="n">col_headers</span>
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
