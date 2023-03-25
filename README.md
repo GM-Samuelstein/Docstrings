@@ -209,10 +209,11 @@ Welcome to your complete guide to documenting Python code. Whether you’re docu
 </ul>
 <section class="section4" id="class-docstrings"><h4>Class Docstrings<a class="headerlink" href="#class-docstrings" title="Permanent link"></a></h4>
 <p>Class Docstrings are created for the class itself, as well as any class methods. The docstrings are placed immediately following the class or class method indented by one level:</p>
-<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">SimpleClass</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Class docstrings go here.&quot;&quot;&quot;</span>
+<pre><code>
+class SimpleClass:
+    &quot;&quot;&quot;Class docstrings go here.&quot;&quot;&quot;
 
-    <span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    def say_hello</span><span class="p">(self,name: str):
         <span class="sd">&quot;&quot;&quot;Class method docstrings go here.&quot;&quot;&quot;</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
