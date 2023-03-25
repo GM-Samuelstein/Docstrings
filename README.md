@@ -479,6 +479,8 @@ class SimpleClass:
 <span class="sd">@rtype: list</span>
 <span class="sd">@returns: a list of strings representing the header columns</span>
 <span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
+</section>
 
 <h6><a href="#content">Back to Contents.</h6>
 
