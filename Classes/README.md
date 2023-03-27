@@ -31,6 +31,8 @@ Methods:
 """
 ```
 
+<p>Example: </p>
+
 ```
 ****class.py****
 

@@ -31,6 +31,8 @@ Functions:
 """
 ```
 
+<p>Example: </p>
+
 ```
 ****module.py****
 

@@ -35,6 +35,8 @@ Raises:
 """
 ```
 
+<p>Example: </p>
+
 ```
 ****function.py****
 
