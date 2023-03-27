@@ -1,6 +1,6 @@
 <h1 align="center">Classes Documentation - Google Style</h1>
 
-<code>
+```
 """
 This line is for the summary of the class.
 
@@ -12,4 +12,4 @@ Attributes:
     class-attribute_1 (type) : Additional Information
         Attribute description goes here.
 """
-</code>
+```
