@@ -1,5 +1,5 @@
 <h1 align="center">Classes Documentation - Google Style</h1>
-Write the docstrings for your Python classes according the format below. <br /> <br />
+Write the docstrings for your Python classes according to the format below. <br /> <br />
 
 ```
 """
