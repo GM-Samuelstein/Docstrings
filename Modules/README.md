@@ -1,4 +1,4 @@
-<h1 align="center">Moduless Documentation - Google Style</h1>
+<h1 align="center">Modules Documentation - Google Style</h1>
 Write the docstrings for your Python Modules according to the format below. <br /> <br />
 
 ```

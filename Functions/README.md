@@ -13,15 +13,11 @@ Args:
     param_1 (type) : Additional Information.
         Parameter summary goes here.
     
-    param_1 (type) : Additional Information.
+    param_2 (type) : Additional Information.
         Parameter summary goes here.
 
     param_n (type) : Additional Information.
         Parameter summary goes here.
-    
-Returns:
-    Variable (type) : Additional Information.
-        Return summary goes here.
 
 Raises:
     Exception_1 : Additional Information.
@@ -32,6 +28,10 @@ Raises:
 
     Exception_n : Additional Information.
         Condition(s) for exception.
+
+Returns:
+    variable (type) : Additional Information.
+        Return summary goes here.
 """
 ```
 
