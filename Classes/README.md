@@ -10,23 +10,23 @@ is meant for, and any other important description. Note that,
 the summary line above must be ONE LINE.
 
 Attributes:
-    attribute_1 (type) : Additional Information
+    attribute_1 (type) : Additional Information.
         Attribute summary goes here.
     
-    attribute_2 (type) : Additional Information
+    attribute_2 (type) : Additional Information.
         Attribute summary goes here.
 
-    attribute_n (type) : Additional Information
+    attribute_n (type) : Additional Information.
         Attribute summary goes here.
 
 Methods:
-    method_1(*args, **kwargs) : Additional Information
+    method_1(*args, **kwargs) : Additional Information.
         Method summary goes here.
 
-    method_2(*args, **kwargs) : Additional Information
+    method_2(*args, **kwargs) : Additional Information.
         Method summary goes here.
 
-    method_n(*args, **kwargs) : Additional Information
+    method_n(*args, **kwargs) : Additional Information.
         Method summary goes here.
 """
 ```
