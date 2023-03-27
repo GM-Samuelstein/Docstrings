@@ -1,5 +1,5 @@
 <h1 align="center">Packages Documentation - Google Style</h1>
-Write the docstrings for your Python Packages according to the format below. Docstrings for packages are usually written in the `__init__.py` file in the package folder.<br /> <br />
+Write the docstrings for your Python Packages according to the format below. Docstrings for packages are usually written in the <code>__init__.py</code> file in the package folder.<br /> <br />
 
 ```
 """
